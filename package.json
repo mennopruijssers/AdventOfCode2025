@@ -1,0 +1,48 @@
+{
+  "name": "advent-of-code-2025",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "jest --onlyChanged",
+    "test:ci": "ENABLE_SLOW_TESTS=1 jest",
+    "test:watch": "ENABLE_SLOW_TESTS=1 jest --watch --onlyChanged",
+    "last": "node --files src/cli/run.ts last",
+    "day": "node src/cli/run.ts",
+    "next": "node src/cli/generate.ts next",
+    "today": "node src/cli/generate.ts today",
+    "generate": "node src/cli/generate.ts",
+    "eslint": "eslint --fix --cache src",
+    "eslint:check": "eslint --cache src",
+    "check": "npm run build && npm run eslint:check",
+    "lint": "npm run build && npm run eslint",
+    "prepare": "husky install"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@jest/globals": "^30.2.0",
+    "@types/copy-paste": "^2.1.0",
+    "@types/figlet": "^1.5.5",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "lint-staged": "^16.2.7",
+    "nodemon": "^3.0.1",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.17.0"
+  },
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "copy-paste": "^2.2.0",
+    "figlet": "^1.5.2"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --cache --fix"
+  }
+}

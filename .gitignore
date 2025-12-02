@@ -1,0 +1,6 @@
+/out
+/node_modules
+/.eslintcache
+/coverage
+.DS_Store
+/tsconfig.tsbuildinfo
