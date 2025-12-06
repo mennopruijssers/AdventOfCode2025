@@ -15,6 +15,6 @@ const example = `
 32
 `.trim();
 
-dayRunner(Day, example, 3, 42);
+dayRunner(Day, example, 3, 14);
 
-dayVerifier(5, 756, 42);
+dayVerifier(5, 756, 355555479253787);
