@@ -41,6 +41,17 @@ export class Grid<T> {
 
     return line[x];
   }
+
+  set({ x, y }: Point, value: T): void {
+    if (y < 0 || y >= this.grid.length) {
+      throw new Error('out of bounds');
+    }
+    const line = this.grid[y];
+    if (x < 0 || x >= line.length) {
+      throw new Error('out of bounds');
+    }
+    line[x] = value;
+  }
   getOrDefault({ x, y }: Point, def: T): T {
     if (y < 0 || y >= this.grid.length) {
       return def;
