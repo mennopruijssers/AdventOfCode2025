@@ -8,6 +8,6 @@ const example = `
 *   +   *   +  
 `.trim();
 
-dayRunner(Day, example, 4277556, 42);
+dayRunner(Day, example, 4277556, 3263827);
 
-dayVerifier(6, 4693419406682, 42);
+dayVerifier(6, 4693419406682, 9029931401920);
