@@ -1,18 +1,20 @@
 import { BaseDay } from '../day';
 
-export function largestJoltage(bank: number[]): number {
-  const max = bank.slice(-2);
-  for(let i = bank.length - 3; i >= 0; i--) {
+export function largestJoltage(bank: number[], numberOfBatteries=2): number {
+  const  maxes = Array<number>(numberOfBatteries).fill(0);
+  for(let i =0; i<bank.length; i++) {
     const battery = bank[i];
-    if(battery >= max[0]) {
-      if(max[0] > max[1]) {
-        max[1] = max[0];
-      }      
-      max[0] = battery;            
+    for (let j = 0; j < maxes.length; j++) {
+      if (battery > maxes[j] && i < bank.length - maxes.length + j + 1) {
+          maxes[j] = battery;
+          for (let k = j + 1; k < maxes.length; k++) {
+              maxes[k] = 0;
+          }
+          break;
+      }  
     }
   }
-
-  return max[0] * 10 + max[1];
+  return maxes.reduce((sum, battery) => sum * 10 + battery, 0);  
 }
 type Input = number[][];
 export class Day extends BaseDay<Input, number, number> {
@@ -27,7 +29,9 @@ export class Day extends BaseDay<Input, number, number> {
   }
 
   partTwo() {
-    return 42;
+    const joltages = this.input.map(bank => largestJoltage(bank, 12));
+    const sum = joltages.reduce((sum, joltage) => sum + joltage, 0);
+    return sum;    
   }
 }
 
