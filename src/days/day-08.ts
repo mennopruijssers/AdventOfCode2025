@@ -46,7 +46,35 @@ export class Day extends BaseDay<Input, number, number> {
   }
 
   partTwo() {
-    return 42;
+    const distances: { p1: Point, p2: Point, distance: number }[] = [];
+    for (let i = 0; i < this.input.length; i++) {
+      for (let j = i + 1; j < this.input.length; j++) {
+        distances.push({ p1: this.input[i], p2: this.input[j], distance: getDistance(this.input[i], this.input[j]) });
+      }
+    }
+
+    distances.sort((a, b) => b.distance - a.distance);
+
+    let circuits = this.input.map(point => [point]);
+
+    let lastConnection = distances[0];
+    while (circuits.length > 1) {
+      lastConnection = distances.pop()!;
+      const { p1, p2 } = lastConnection;
+      const [matching, nonMatching] = circuits.reduce<[Point[][], Point[][]]>(([matching, nonMatching], circuit) => {
+        if (circuit.includes(p1) || circuit.includes(p2)) {
+          matching.push(circuit);
+        } else {
+          nonMatching.push(circuit);
+        }
+        return [matching, nonMatching];
+      }, [[], []]);
+      const joinedCircuit = matching.flatMap(circuit => circuit);
+      circuits = [joinedCircuit, ...nonMatching];
+    }
+
+    const { p1, p2 } = lastConnection;
+    return p1[0] * p2[0];
   }
 }
 

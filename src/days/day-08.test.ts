@@ -24,6 +24,6 @@ const example = `
 425,690,689
 `.trim();
 
-dayRunner(Day, example, 40, 42);
+dayRunner(Day, example, 40, 25272);
 
-dayVerifier(8, 153328, 42);
+dayVerifier(8, 153328, 6095621910);
